@@ -1,0 +1,613 @@
+\documentclass{beamer}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{multirow} 
+\usepackage{url}
+\usetheme{CambridgeUS}
+\setbeamercovered{dynamic}
+%\usefonttheme{structurebold}
+
+\title[PRBS Generator for High Speed DAC]{ Design of Pseudo Random Binary Sequence Generator for High Speed Digital to Analog Converters}
+\author[]{Presented by \\
+{\Large \bf {Mahendra Sakare}} \\
+Under the guidance of\\
+{\bf Prof. Shalabh Gupta}}
+\institute[{\url{mahendras@ee.iitb.ac.in}}]{Department  of Electrical Engineering\\
+Indian Institute of Technology, Bombay}
+
+\date{Annual Progress Seminar 2010}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Pseudo Random Binary Sequence Generator}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pseudo Random Binary Sequence Generator}
+
+%	\begin{columns}[c]
+%	\column{3in}
+	\tableofcontents
+%	\column{1in}
+%	$\setminus$tableofcontents
+%	\end{columns}
+\end{frame}
+
+\section{Introduction}
+
+\subsection*{Motivation}
+\begin{frame}
+
+	\frametitle{Motivation}
+\begin{center}
+	\begin{columns}[l]
+	\column{3.2in}
+\begin{small}
+        \begin{itemize}
+	\item{Optical communication need very high speed signal generation.}
+	\item{Multi-level signalling is also being explored for $>$10Gb by complex modulation formats.}
+        \item{For this multi level, DAC is used.}
+	\item{Fastest DAC available is about 10GHz So requirement of Testing bit generation (Pseudo Random Binary Sequence Generator) of this also the same.}
+        \item{We are planning to exploit fast speed of deep submicron CMOS to achieve $>$10GHz and want to replace other tecnologies.}
+	\end{itemize}
+\end{small}
+	\column{2in}
+        \begin{figure}
+	\begin{center}
+	\includegraphics[scale=1.7,angle=360]{./figure/akihinde0964QAM.eps}
+\hfill
+        \includegraphics[scale=1.7,angle=360]{./figure/constellation.eps}
+	%\caption{Sine Wave}
+	\label{fig:akihinde0964QAM}
+	\end{center}
+	\end{figure}
+	\end{columns}
+       
+\end{center}
+\tiny{Ref: {\cite{sano09}{\color{blue}{A Sano, T Kobayashi,"240-Gb/s Polarization-Multiplexed 64-QAM Modulation...",\emph{ECOC},2009.}} \hspace{.18in}\cite{jianjun2010}{\color{blue} {jianjun Yu, Xiang Zhou, Shalabh Gupta...,""112.8-Gb/s PM-RZ-64QAM optical ..."",\emph{OFCNFOEC}, 2010.}}}}
+%\tiny{Ref: {\cite{RazaviJSSC02}{\color{blue}{A Sano, T Kobayashi, K Ishihara, H Masuda, S Yamamoto, K Mori, E Yamazaki, E Yoshida, Y Miyamoto,"240-Gb/s Polarization-Multiplexed 64-QAM Modulation and Blind Detection Using PLC-LN Hybrid Integrated Modulator and Digital Coherent Receiver \emph{ECOC} 2009} \hspace{.18in}\cite{Razavioptical03}{\color{blue} {Razavi,"Design of ICs for Optical Communications",2003.}} \hspace{.18in}\cite{Rabaey}{\color{blue} {Rabaey,Chandrakasan $\&$ Nikolic,"Digital ICs",2003.}}}} 
+\end{frame}
+
+\subsection*{Pseudo Random Binary Sequence Generator}
+\begin{frame}
+	\frametitle{Pseudo Random Binary Sequence Generator}
+		\begin{center}
+		\begin{itemize}
+	\item{It is also known as PRBS Generator or PRBSG or PRBG or PRSG in short.}
+	\item{PRBS Generator can be used for On-chip testing. For Optical communication, we require high speed Pseudo Random Bit sequence Generator operating for high speed DAC.}
+        \item{PRBSG is called Random Binary sequence Generator because this generates random sequence and because that random sequence repeats after some time cycle, It is called Pseudo Random Sequence Binary Generator.}
+	\item{Main Component of PRBSG is  Linear Feedback Shift Register.}
+	\end{itemize}
+		\end{center}
+\end{frame}
+
+\section{Linear Feedback Shift Register}
+%\subsection*{(LFSR)}
+%\begin{frame}
+%	\frametitle{Linear Feedback Shift Register (LFSR)}
+
+%\begin{center}
+%	\begin{columns}[l]
+%	\column{3.2in}
+ %      \begin{itemize}
+%	\item{A linear feedback shift register (LFSR) is a shift register whose input bit is a linear function of its previous state.}
+%	\item{Because the operation of the register is deterministic, the stream of values produced by the register is completely determined by its current (or previous) state.}
+%	\end{itemize}
+%\begin{figure}
+%	\begin{center}
+%	{\includegraphics[scale=0.3,angle=360]{./figure/LFSR4bit.ps}} 
+%	%\caption{Sine Wave}
+%	%\label{fig:akihinde0964QAM}
+%	\end{center}
+%	\end{figure}
+%\column{1.5in}
+	%\begin{table}
+%\tiny
+%\begin{center}
+%%\caption{Sequence for 4-Bit Linear Feedback Shift Register}
+%\label{tb:Seq4bitLFSR} 
+%\begin{tabular}{||@{}c|@{}c||}
+%\hline \hline
+%{\color{blue}{Clk}} & {\color{blue}{$B_{0}B_{1}B_{2}B_{3}$}}\\ 
+%1 & 1010(seed)\\ 
+%2 & 1101 \\ 
+%3 & 1110 \\ 
+%4 & 1111 \\ 
+%5 & 0111 \\ 
+%6 & 0011 \\ 
+%7 & 0001 \\ 
+%8 & 1000 \\ 
+%9 & 0100 \\ 
+%10 & 0010 \\ 
+%11 & 1001 \\ 
+%12 & 1100 \\ 
+%13 & 0110 \\ 
+%14 & 1011 \\ 
+%15 & 0101 \\ \hline\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+%\end{columns}
+%\end{frame}
+
+\subsection*{4-bit LFSR - Basic operation}
+
+\begin{frame}
+\frametitle{4-bit Linear Feedback Shift Register}
+\begin{figure}
+\centering
+\begin{table}
+\tiny
+\begin{center}
+%\caption{Sequence for 4-Bit Linear Feedback Shift Register}
+%\label{tb:Seq4bitLFSR} 
+\begin{tabular}{l@{}r@{}r@{}r || @{}c|@{} c  }
+\multirow{16}{*}{\includegraphics[scale=0.3,angle=360]{./figure/LFSR4bit.ps}} &&&& {\color{blue}{Clk}} & {\color{blue}{$B_{0}B_{1}B_{2}B_{3}$}}\\
+& & & & 1 & 1010(seed)\\ 
+& & & & 2 & 1101 \\ 
+& & & & 3 & 1110 \\ 
+& & & & 4 & 1111 \\ 
+& & & & 5 & 0111 \\ 
+& & & & 6 & 0011 \\ 
+& & & & 7 & 0001 \\ 
+& & & & 8 & 1000 \\ 
+& & & & 9 & 0100 \\ 
+& & & & 10 & 0010 \\ 
+& & & & 11 & 1001 \\ 
+& & & & 12 & 1100 \\ 
+& & & & 13 & 0110 \\ 
+& & & & 14 & 1011 \\ 
+& & & & 15 & 0101 \\
+& & & & 16 & 1010(repeats)\\
+\end{tabular}
+\end{center}
+\end{table}
+\end{figure}
+\begin{itemize}
+	\item{A linear feedback shift register (LFSR) is a shift register whose input bit is a linear function of its previous state.}
+	\item{Because the operation of the register is deterministic, the stream of values produced by the register is completely determined by its current (or previous) state.}
+	\end{itemize}
+\end{frame}
+
+\subsection*{4-bit LFSR waveform for 1Ghz}
+
+\begin{frame}
+\frametitle{Waveform for 1Ghz clock frequency}
+
+\begin{center}
+	\begin{columns}[l]
+	\column{3.2in}
+\begin{figure}
+	\begin{center}
+	{\includegraphics[scale=1.15,angle=360]{./figure/PRBSwave4bit1Ghz.eps}} 
+	%\caption{Sine Wave}
+	%\label{fig:akihinde0964QAM}
+	\end{center}
+	\end{figure}
+\column{1.5in}
+	%\begin{table}
+%\tiny
+\begin{center}
+%\caption{Sequence for 4-Bit Linear Feedback Shift Register}
+\label{tb:Seq4bitLFSR} 
+\begin{tabular}{||@{}c|@{}c||}
+\hline \hline
+{\color{blue}{Clk}} & {\color{blue}{$B_{0}B_{1}B_{2}B_{3}$}}\\ 
+1 & 1010(seed)\\ 
+2 & 1101 \\ 
+3 & 1110 \\ 
+4 & 1111 \\ 
+5 & 0111 \\ 
+6 & 0011 \\ 
+7 & 0001 \\ 
+8 & 1000 \\ 
+9 & 0100 \\ 
+10 & 0010 \\ 
+11 & 1001 \\ 
+12 & 1100 \\ 
+13 & 0110 \\ 
+14 & 1011 \\ 
+15 & 0101 \\ \hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{columns}
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Waveform for 1Ghz clock frequency}
+%\begin{figure}
+%\centering
+%\begin{table}
+%\begin{center}
+%%\caption{Sequence for 4-Bit Linear Feedback Shift Register}
+%%\label{tb:Seq4bitLFSR} 
+ % \begin{tabular}{r@{}r@{}r@{}r || @{}c|@{}c  }
+%\multirow{16}{*}{\includegraphics[scale=1.15,angle=360]{./figure/PRBSwave4bit1Ghz.eps}} &&&& {\color{blue}{Clk}} & {\color{blue}{$B_{0}B_{1}B_{2}B_{3}$}}\\
+%&&&& 1 & 1010 \\ 
+%&&&& 2 & 1101 \\ 
+%&&&& 3 & 1110 \\ 
+%&&&& 4 & 1111 \\ 
+%&&&& 5 & 0111 \\ 
+%&&&& 6 & 0011 \\ 
+%&&&& 7 & 0001 \\ 
+%&&&& 8 & 1000 \\ 
+%&&&& 9 & 0100 \\ 
+%&&&& 10 & 0010 \\ 
+%&&&& 11 & 1001(seed) \\ 
+%&&&& 12 & 1100 \\ 
+%&&&& 13 & 0110 \\ 
+%&&&& 14 & 1011 \\ 
+%&&&& 15 & 0101 \\ 
+%&&&& 16 & 1010(Repeats) \\ \hline\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+%\end{figure}
+%\end{frame}
+
+
+\subsection*{Circuit Implementation}
+\begin{frame}
+	\frametitle{Circuit implementation of LFSR}
+\begin{itemize}	
+		\item{For the design, MOS Current Mode logic (MCML) is used.}
+		\item{MCML gates are faster. The higher speed allows for implementing circuits for fast communication systems.\cite{RazaviJSSC02} -\cite{Rabaey}}
+		\item{D Flip-Flop and XOR are implemented in MCML. }
+		\end{itemize}
+\tiny{Ref: {\cite{RazaviJSSC02}{\color{blue}{Razavi,"Prospect of CMOS tech. for high-speed optical communication circuits,"\emph{JSCC},2002.}} \hspace{.18in}\cite{Razavioptical03}{\color{blue} {Razavi,"Design of ICs for Optical Communications",2003.}} \hspace{.18in}\cite{Rabaey}{\color{blue} {Rabaey,Chandrakasan $\&$ Nikolic,"Digital ICs",2003.}}}}
+\end{frame}
+	
+\section{MOS Current Mode Logic (MCML) D Flip-Flop (DFF)}
+\subsection*{Circuit Implementation}
+\begin{frame}
+\frametitle{Circuit Implementation of MCML Master-Slave(MS)-DFF}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.4,angle=360]{./figure/MSDFF.ps}\par
+		%\caption{Master-Slave D Flip-Flop (MS-DFF)}
+\label{fig:MSDFF}
+	\end{center}
+        \end{figure}
+\begin{itemize}	
+		\item{For implementing MCML D-FF, Master-Slave configuration is used.}
+		\item{Latch is also MCML type.}
+		\end{itemize}
+\end{frame}	
+
+\subsection*{Circuit Implementation}
+\begin{frame}
+\frametitle{Circuit Implementation of MCML Latch}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.55,angle=360]{./figure/2inputCMLlatch.ps}\par
+		%\caption{Basic CML Latch }
+%\label{fig:2inputCMLlatch}
+	\end{center}
+        \end{figure}\par
+\begin{itemize}	
+		\item{When clock is high, it is in transparent phase.}
+		\item{When clock is low, input is latched to the output. It is called Latch phase.}
+		\end{itemize}
+\end{frame}	
+
+\subsection*{Simulation waveform}
+
+\begin{frame}
+	\frametitle{Simulation waveform for MCML Latch}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=1.1,angle=360]{./figure/Latch10ghz.eps}\par
+		%\caption{CMOS CML Latch waveform for Clk Freq 10Ghz and 5Ghz}
+%\label{fig:latchswave}
+	\end{center}
+        \end{figure}\par
+\end{frame}
+
+\subsection*{Simulation waveform}
+
+\begin{frame}
+	\frametitle{Simulation waveform for MCML MS-DFF}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1.3,angle=360]{./figure/DFFwave10ghzcolour.eps}
+		%\caption{Master-Slave D Flip-Flop (MS-DFF) simulation results for 1Ghz and 5Ghz}
+\label{fig:MSDFFwaveform}
+	\end{center}
+        \end{figure}
+\end{frame}
+
+\section{MOS Current Mode Logic (MCML) XOR}
+\subsection*{Circuit Implementation}
+\begin{frame}
+	\frametitle{Circuit Implementation of MCML XOR}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5,angle=360]{./figure/2inputCMLxor.ps}\par
+		%\caption{Basic CML XOR}
+\label{fig:2inputCMLxor}
+	\end{center}
+        \end{figure}
+\end{frame}	
+
+\subsection*{Simulation waveform}
+
+\begin{frame}
+	\frametitle{Simulation waveform for MCML XOR}
+Both inputs are at {\color{blue}{1Ghz}} in fig 1 and at {\color{blue}{5Ghz}} in fig 2 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7,angle=360]{./figure/xor1-5ghz.eps}
+		%\caption{Basic CML XOR}
+\label{fig:2inputCMLxor}
+	\end{center}
+        \end{figure}
+\end{frame}	
+
+\section{($2^7 - 1$) PRBS Generator}
+\subsection*{Circuit Implementation}
+\begin{frame}
+	\frametitle{Circuit Implementation of ($2^7 - 1$) PRBS Generator}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3,angle=360]{./figure/LFSR7bit.ps}
+		%\caption{Basic CML XOR}
+%\label{fig:2inputCMLxor}
+	\end{center}
+        \end{figure}
+\end{frame}
+
+\subsection*{Output Sequence}
+\begin{frame}
+	\frametitle{Output sequence for $2^7 - 1$ PRBS Generator}
+
+\begin{table}
+\begin{center}
+%\caption{Sequence for 7-Bit Linear Feedback Shift Register}
+\label{tb:Seq7bitLFSR} 
+\tiny
+  \begin{tabular}{||c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|| }
+    \hline\hline
+{\color{blue}{Clk}}& {\color{blue}{1}} & {\color{blue}{2}} & {\color{blue}{3}} & {\color{blue}{4}} & {\color{blue}{5}} & {\color{blue}{6}} & {\color{blue}{7}} & {\color{blue}{8}} & {\color{blue}{9}} & {\color{blue}{10}} & {\color{blue}{11}} & {\color{blue}{12}} & {\color{blue}{13}} & {\color{blue}{14}} & {\color{blue}{15}}   \\ \hline 
+$Bit_0$ & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0   \\ \hline\hline
+{\color{blue}{Clk}}& {\color{blue}{16}} & {\color{blue}{17}} & {\color{blue}{18}} & {\color{blue}{19}} & {\color{blue}{20}} & {\color{blue}{21}} & {\color{blue}{22}} & {\color{blue}{23}} & {\color{blue}{24}} & {\color{blue}{25}} & {\color{blue}{26}} & {\color{blue}{27}} & {\color{blue}{28}} & {\color{blue}{29}} & {\color{blue}{30}}   \\ \hline 
+$Bit_0$ & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\hline\hline
+{\color{blue}{Clk}}& {\color{blue}{31}} & {\color{blue}{32}} & {\color{blue}{33}} & {\color{blue}{34}} & {\color{blue}{35}} & {\color{blue}{36}} & {\color{blue}{37}} & {\color{blue}{38}} & {\color{blue}{39}} & {\color{blue}{40}} & {\color{blue}{41}} & {\color{blue}{42}} & {\color{blue}{43}} & {\color{blue}{44}} & {\color{blue}{45}}   \\ \hline 
+$Bit_0$ & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 0  \\ \hline\hline
+{\color{blue}{Clk}}& {\color{blue}{46}} & {\color{blue}{47}} & {\color{blue}{48}} & {\color{blue}{49}} & {\color{blue}{50}} & {\color{blue}{51}} & {\color{blue}{52}} & {\color{blue}{53}} & {\color{blue}{54}} & {\color{blue}{55}} & {\color{blue}{56}} & {\color{blue}{57}} & {\color{blue}{58}} & {\color{blue}{59}} & {\color{blue}{60}}   \\ \hline 
+$Bit_0$ & 1 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0   \\ \hline\hline
+{\color{blue}{Clk}}& {\color{blue}{61}} & {\color{blue}{62}} & {\color{blue}{63}} & {\color{blue}{64}} & {\color{blue}{65}} & {\color{blue}{66}} & {\color{blue}{67}} & {\color{blue}{68}} & {\color{blue}{69}} & {\color{blue}{70}} & {\color{blue}{71}} & {\color{blue}{72}} & {\color{blue}{73}} & {\color{blue}{74}} & {\color{blue}{75}}   \\ \hline 
+$Bit_0$ & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\ \hline
+{\color{blue}{Clk}}& {\color{blue}{76}} & {\color{blue}{77}} & {\color{blue}{78}} & {\color{blue}{79}} & {\color{blue}{80}} & {\color{blue}{81}} & {\color{blue}{82}} & {\color{blue}{83}} & {\color{blue}{84}} & {\color{blue}{85}} & {\color{blue}{86}} & {\color{blue}{87}} & {\color{blue}{88}} & {\color{blue}{89}} & {\color{blue}{90}}   \\ \hline 
+$Bit_0$ &  1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\ \hline\hline
+{\color{blue}{Clk}}& {\color{blue}{91}} & {\color{blue}{92}} & {\color{blue}{93}} & {\color{blue}{94}} & {\color{blue}{95}} & {\color{blue}{96}} & {\color{blue}{97}} & {\color{blue}{98}} & {\color{blue}{99}} & {\color{blue}{100}} & {\color{blue}{101}} & {\color{blue}{102}} & {\color{blue}{103}} & {\color{blue}{104}} & {\color{blue}{105}}   \\ \hline 
+$Bit_0$ & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 0 \\\hline\hline
+{\color{blue}{Clk}}& {\color{blue}{106}} & {\color{blue}{107}} & {\color{blue}{108}} & {\color{blue}{109}} & {\color{blue}{100}} & {\color{blue}{111}} & {\color{blue}{112}} & {\color{blue}{113}} & {\color{blue}{114}} & {\color{blue}{115}} & {\color{blue}{116}} & {\color{blue}{117}} & {\color{blue}{118}} & {\color{blue}{119}} & {\color{blue}{120}}   \\ \hline 
+$Bit_0$ & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 \\ \hline\hline
+{\color{blue}{Clk}}& {\color{blue}{121}} & {\color{blue}{122}} & {\color{blue}{123}} & {\color{blue}{124}} & {\color{blue}{125}} & {\color{blue}{126}} & {\color{blue}{127}} & {\color{blue}{128}} & {\color{blue}{129}} & {\color{blue}{130}} & {\color{blue}{131}} & {\color{blue}{132}} & {\color{blue}{133}} & {\color{blue}{134}} & {\color{blue}{135}}   \\ \hline 
+$Bit_0$ & 0 & 1 & 1 & 1 & 1 &1 & 1 & {\color{red}{1}}* & {\color{red}{0}}* & {\color{red}{0}}* & {\color{red}{0}}* & {\color{red}{0}}* & {\color{red}{1}}* & {\color{red}{1}}* & {\color{red}{1}}*\\ \hline \hline
+\end{tabular}
+\end{center}
+\end{table}
+* = sequence repeats
+\begin{itemize}
+	\item{Total sequence = $2^7 - 1$ = 127}
+\item{After that it repeats.}
+\end{itemize}
+\end{frame}
+
+
+
+\subsection*{Simulation waveform}
+\begin{frame}
+	\frametitle{Simulation waveform for $2^7 - 1$ PRBS Generator}
+\begin{columns}[c]
+	\column{3.5in}
+
+	\begin{figure}
+	\begin{center}
+		\includegraphics[scale=1.1,angle=360]{./figure/prbs8ghz.eps}
+		%\caption{Basic CML XOR}
+\label{fig:2inputCMLxor}
+	\end{center}
+        \end{figure}
+	\column{1.5in}
+	\begin{small}
+\begin{itemize}
+	\item{clk freq = 8 Ghz}
+        \item{Possible sequence = $2^7 - 1$}
+        \item{Zoomed view sequence = 0 1 0 1 0 0 0 1 1 0 1 1 1 0 0 0 1 1 1 1 1 1}
+\end{itemize}
+	\end{small}
+	\end{columns}
+\end{frame}	
+
+\subsection*{Eye diagram}
+\begin{frame}
+	\frametitle{Eye-Diagram for $2^7 - 1$ PRBS Generator}
+\begin{columns}[c]
+	\column{3.5in}
+
+	\begin{figure}
+	\begin{center}
+		\includegraphics[scale=.55,angle=360]{./figure/eyediagram7bitPRBS.eps}
+		%\caption{Basic CML XOR}
+\label{fig:2inputCMLxor}
+	\end{center}
+        \end{figure}
+	\column{1.5in}
+	\begin{small}
+\begin{itemize}
+	\item{High slew rate, less sensitivity to timing error}
+        \item{Amount of noise that can be tolerated = 2.24$\mu$V/$\sqrt{hz}$}
+        \item{Amount of distortion = 1.12$\mu$V/$\sqrt{hz}$}
+\end{itemize}
+	\end{small}
+	\end{columns}	
+
+	\end{frame}
+
+\section{Comparison with recent PRBS Generators}
+\subsection*{Table(CMOS Technology only)}
+\begin{frame}
+	\frametitle{Comparison with recent PRBS Generators}
+Figure of merit [FOM] = $\frac{Power}{{log}_{2}(Length)\times Speed}$
+
+\begin{table}
+\begin{center}
+%%\caption{Sequence for 7-Bit Linear Feedback Shift Register}
+\label{tb:Seq7bitLFSR} 
+  \begin{tabular}{||@{}c||@{}c|@{}c|@{}c|@{}c|@{}c||}
+    \hline\hline
+Reference&Power&Length&Speed&Technology&FOM$[\frac{pJ}{bit}]$ \\ \hline \hline 
+This work&36.5mW&$2^7 - 1$&8Gb/s&CMOS 90nm&\color{blue}{0.65}\\ \hline
+kin-joe(2008)\cite{KBAH08}&131mW&$2^7 - 1$&5Gb/s&CMOS 0.18$\mu$m&0.84\\ \hline 
+Bomma.(2007)\cite{BKAH07}&300mW&$2^{31} - 1$&12Gb/s&CMOS 0.18$\mu$m&0.78\\ \hline
+Wohlmuth(2004)\cite{Wohlmuth04}&205mW&$2^7 - 1$&13Gb/s&CMOS 120nm&2.26\\ \hline \hline
+\end{tabular}
+\end{center}
+\end{table}
+\tiny {Ref: \cite{Wohlmuth04}{\color{blue}{Wohlmuth, Kehrer, "A low power 13-Gb/s $2^7 - 1$ PRBSG IC in 120 nm bulk CMOS, SBCCI 2004}}. \hspace{.18in}\cite{BKAH07}{\color{blue} {Bommalingaiahnapallya, Kin-Joe,Ahmadi, Harjani; "High - Speed Circuits for a Multi - Lane 12 Gbps CMOS PRBS Generator",IEEE Tran. on Cir. and Sys., 2007}}. \hspace{.18in}\cite{KBAH08} {\color{blue}{Sham Kin - Joe, Bommalingaiahnapallya, Ahmadi, Harjani; "A 3 $\times$ 5-Gb/s Multilane Low-Power 0.18 - $\mu{\hbox {m}}$ CMOS PRBS  Generator",IEEE Tran. on Cir. and Sys., 2008.}}}
+\end{frame}
+
+\section{Conclusion}
+\subsection*{Future work}
+\begin{frame}
+	\frametitle{Conclusion}
+	\begin{itemize}
+	\item{The design and performance measurement results of a 1V 7-bit 8Ghz Pseudo random binary sequence (PRBS) generator are presented. The PRBS generator is implemented in a UMC 90nm CMOS technology. The PRBS generator achieves desired sequence with clock frequency of 8Ghz from a 1V supply.}
+	\item{The PRBS generator is intended for on chip testing of high speed Digital to Analogue converter (DAC).}
+\item{Future work includes designing of PRBS generator for high clock frequency(upto 20Ghz) and high bits (more than 24bits) and implement it in layout.}
+\end{itemize}	
+\end{frame}
+
+
+\section{Bibliography}
+
+\begin{frame}
+	\frametitle{Bibliography:}
+\tiny
+\begin{thebibliography}{10}
+
+\bibitem{jianjun2010}
+jianjun Yu, Xiang Zhou, Shalabh Gupta, Ming-fang Haung, Ting Wang and Peter Magill, "112.8-Gb/s PM-RZ-64QAM optical signal generation and transmission on a 12.5GHz WDM grid", \emph{OFCNFOEC},2010.
+\bibitem{RazaviJSSC02}
+B. Razavi, “Prospect of CMOS technology for high-speed optical communication circuits,” \emph{IJSSC},2002.
+\bibitem{Razavioptical03}
+B. Razavi, Design of Integrated Circuits for Optical Communications, McGraw-Hill, 2003.
+\bibitem{Rabaey}
+J. Rabaey, A. Chandrakasan, and B. Nikolic, Digital ICs (A Design Perspective), Prentice Hall, 2003.
+\bibitem{Wohlmuth04}
+H.-D. Wohlmuth and D. Kehrer, “A low power 13-Gb/s $2^7 - 1$ PRBS generator IC in 120 nm bulk CMOS,” in Proc. of SBCCI, 2004.
+\bibitem{AP05}
+M. Alioto, G. Palumbo, "Power-Delay Optimization of D-Latch/MUX Source Coupled Logic Gates,"\emph{Inter. Journal of Circuit Theory and Applications}, 2005.
+\bibitem{AP06}
+M. Alioto, G. Palumbo, "Power-Aware Design Techniques for Nanometer MOS Current-Mode Logic Gates: a Design Framework," \emph{IEEE Cir. and Sys. Magazine},2006.
+\bibitem{AMP06} 
+M. Alioto, R. Mita, G. Palumbo, "Design of High-Speed Power-Efficient MOS Current-Mode Logic Frequency Dividers", \emph{IEEE Trans. on Cir. and Sys. - part II},2006.
+\bibitem{sano09} 
+A Sano, T Kobayashi, K Ishihara, H Masuda, S Yamamoto, K Mori, E Yamazaki, E Yoshida, Y Miyamoto,"240-Gb/s Polarization-Multiplexed 64-QAM Modulation and Blind Detection Using PLC-LN Hybrid Integrated Modulator and Digital Coherent Receiver,"\emph{ECOC},2009.   
+\bibitem{BKAH07} 
+S. Bommalingaiahnapallya, Sham Kin-Joe, M. R. Ahmadi, R Harjani; "High-Speed Circuits for a Multi-Lane 12 Gbps CMOS PRBS Generator", \emph{IEEE Trans. on Cir. and Sys.}, 2007.
+\bibitem{KBAH08} 
+Sham Kin-Joe, S. Bommalingaiahnapallya, M. R. Ahmadi, R Harjani; "A 3 $\times$ 5-Gb/s Multilane Low-Power 0.18- $\mu{\hbox {m}}$ CMOS PRBS Generator", \emph{IEEE Trans. on Cir. and Sys.II: Express Briefs}, 2008.
+\bibitem{AOD09} 
+S Abdelkader, M Omar, M Dessouky, "1-V, high speed, low leakage CMOS CML multiplexer",\emph{ISCAS}, 2009.
+\end{thebibliography}
+	%\bibliographystyle{IEEEbib}
+	%\bibliography{pres}
+	%\nocite{*}
+\end{frame}
+
+%\begin{frame}
+%	\frametitle{Bibliography:}
+%\begin{thebibliography}{10}
+%\bibitem{AP05}
+%M. Alioto, G. Palumbo, "Power-Delay Optimization of D-Latch/MUX Source Coupled Logic Gates,"\emph{International Journal of Circuit Theory and Applications}, vol. 33, no. 1, pp. 65-86, Jan./Feb. 2005.
+
+%\end{thebibliography}
+
+	%\bibliographystyle{IEEEbib}
+	%\bibliography{pres}
+
+	%\nocite{*}
+
+%\end{frame}
+
+%\begin{frame}
+%	\frametitle{Bibliography:}
+%\begin{thebibliography}{10}
+
+%\end{thebibliography}
+	%\bibliographystyle{IEEEbib}
+	%\bibliography{pres}
+	%\nocite{*}
+%\end{frame}
+
+%\begin{frame}
+%	\frametitle{Bibliography: Syntax}
+%	$\setminus$bibliographystyle$\lbrace$IEEEbib$\rbrace$\newline
+%	$\setminus$bibliography$\lbrace$foo$\rbrace$\newline
+%	$\setminus$nocite$\lbrace$*$\rbrace$\newline
+%	@Article$\lbrace$ref1,\newline
+%	author =``Jean Marc Bonard \textit{et al.}'',\newline
+%	title = ``Field emission from carbon nanotubes'',\newline
+%	journal = ``Solid-State Electronics'',\newline
+%	year = ``2001'',\newline
+%	volume = ``45'',\newline
+%	$\rbrace$\newline
+%	\$latex foo.tex\newline
+%	\$bibtex foo\newline
+%	\$latex foo.tex
+%\end{frame}
+\section*{}
+\subsection*{}
+\begin{frame}
+	%\frametitle{Theorem, Corollary, Proof, Definition et al.}
+	\begin{block}{\Large \bf {Thank You}}
+	\end{block}
+\end{frame}
+\end{document}
+
+
+ % figure with text
+
+	%\begin{columns}[c]
+%	\column{2in}
+
+%	\begin{figure}
+%	\begin{center}
+%	\includegraphics[scale=0.15,angle=270]{./figure/iitblogo.epsi}
+%	\caption{Sine Wave}
+%	\label{fig:sinewave}
+%	\end{center}
+%	\end{figure}
+%
+%	\column{3in}
+%
+%	\begin{small}
+%	$\setminus$begin$\lbrace$figure$\rbrace$\newline
+%	$\setminus$begin$\lbrace$center$\rbrace$\newline
+%	$\setminus$includegraphics[scale=0.5,angle=270]$\lbrace$graph.eps$\rbrace$\newline
+%	$\setminus$caption$\lbrace$Sine Wave$\rbrace$\newline
+%	$\setminus$label$\lbrace$fig:sinwave$\rbrace$\newline
+%	$\setminus$end$\lbrace$center$\rbrace$\newline
+%	$\setminus$end$\lbrace$figure$\rbrace$\newline
+%	\end{small}
+%
+%	\end{columns}
+
+
+%quote
+%	\begin{quote}
+%	``This result is too beautiful to be false; it is more important to have beauty in one's equations than to have them fit experiment.'' \hfill ---Paul Dirac
+%	\end{quote}

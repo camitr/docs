@@ -1,0 +1,383 @@
+\documentclass{beamer}
+\usepackage{hyperref}
+\usepackage{color}
+\usetheme{CambridgeUS}
+\setbeamercovered{dynamic}
+%\usefonttheme{structurebold}
+
+\title[PRBS Generator for High Speed DAC]{ Design of Pseudo Random Binary Sequence Generator for High Speed Digital to Analog Converters}
+\author[Mahendra Sakare]{Presented by \\
+{\Large \bf Mahendra Sakare} \\
+mahendras@ee.iitb.ac.in\\
+Under the guidance of\\
+{\Large \bf Prof Shalabh Gupta}
+}
+\institute[IIT Bombay]{Department  of Electrical Engineering\\
+Indian Institute of Technology, Bombay}
+
+\date{31st March, 2010}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Pseudo Random Binary Sequence Generator}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pseudo Random Binary Sequence Generator}
+
+%	\begin{columns}[c]
+%	\column{3in}
+	\tableofcontents
+%	\column{1in}
+%	$\setminus$tableofcontents
+%	\end{columns}
+\end{frame}
+
+\section{Introduction}
+
+\subsection*{Pseudo Random Binary Sequence Generator}
+\begin{frame}
+	\frametitle{Pseudo Random Binary Sequence Generator}
+		\begin{center}
+		\begin{itemize}
+	\item{It is also known as PRBS Generator or PRBSG or PRBG or PRSG in short.}
+	\item{Transmission of Data in optical communication is in large bandwidth so the Analog Front-end for this required of same bandwidth. Analog to digital and Digital to analog conversion is very common in signal processing. PRBS Generator can be used for On-chip testing. For Optical communication, we require high speed Pseudo Random Bit sequence Generator operating for high speed DAC.}
+        \item{PRBSG is called Random Binary sequence Generator because this generates random sequence and because that random sequence repeats after some time cycle, It is called Pseudo Random Sequence Binary Generator.}
+	\item{Main Component of PRBSG is  Linear Feedback Shift Register.}
+	\end{itemize}
+		\end{center}
+\end{frame}
+
+\section{Linear Feedback Shift Register}
+\subsection*{(LFSR)}
+\begin{frame}
+	\frametitle{Linear Feedback Shift Register (LFSR)}
+	\begin{itemize}
+	\item{A linear feedback shift register (LFSR) is a shift register whose input bit is a linear function of its previous state. The only linear function of single bits is XOR, thus it is a shift register whose input bit
+is driven by the Exclusive-OR (XOR) of some bits of the overall shift register value.}
+	\item{The initial value of the LFSR is called the seed, and because the operation of the register is deterministic, the stream of values produced by the register is completely determined by its current (or previous) state.}
+	\end{itemize}	
+\end{frame}
+
+\subsection*{4-bit LFSR - Basic operation}
+
+\begin{frame}
+	\frametitle{4-bit Linear Feedback Shift Register}
+
+\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.3,angle=360]{./figure/LFSR4bit.ps}
+	\caption{4-Bit Linear Feedback Shift Register}
+       \label{fig:LFSR}
+	\end{center}
+\end{figure}
+\begin{itemize}	
+		\item{For the design, Mos Current Mode logic (MCML) is used.}
+		\item{Tables}
+		\item{Graphics, Plots}
+		\item{Bibliography}
+		\item{Mathematics (lots of it)}
+		\item{Presentations (good grades)}
+		\end{itemize}
+		
+\end{frame}
+
+
+\subsection*{What Else?}
+\begin{frame}
+	\frametitle{What Else?}
+		\begin{table}
+\begin{center}
+\caption{Sequence for 4-Bit Linear Feedback Shift Register}
+\label{tb:Seq4bitLFSR} 
+  \begin{tabular}{||@{}c| @{}c || }
+    \hline
+Clk & output\\ \hline \hline
+1 & 1010(seed) \\ \hline
+2 & 1101 \\ \hline
+3 & 1110  \\ \hline
+4 & 1111 \\ \hline
+5 & 0111\\ \hline
+6 & 0011\\ \hline
+7 & 0001 \\ \hline
+8 & 1000\\ \hline
+9 & 0100 \\ \hline
+10 & 0010\\ \hline
+11 & 1001\\ \hline
+12 & 1100\\ \hline
+13 & 0110\\ \hline
+14 & 1011\\ \hline
+15 & 0101\\ \hline
+16 & 1010(Repeats) \\ \hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{frame}
+	
+
+\subsection*{Text Formatting}
+
+\begin{frame}
+\frametitle{Text Formatting}
+
+
+		\begin{table}
+\begin{center}
+\caption{Sequence for 4-Bit Linear Feedback Shift Register}
+\label{tb:Seq4bitLFSR} 
+  \begin{tabular}{||@{}c| @{}c || }
+    \hline
+Clk & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16\\ \hline \hline
+
+out & 1010(seed) & 1101 & 1110 & 1111 & 0111 & 0011 & 0001 & 1000 & 0100 & 0010 & 1001 & 1100 & 0110 & 1011 & 0101 & 1010(Repeats) \\ \hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+$\setminus$section\newline
+$\setminus$subsection*\newline
+\begin{center}$\setminus$begin$\lbrace$center$\rbrace$\dots\dots$\lbrace$center$\rbrace$\end{center}
+\begin{flushleft}$\setminus$begin$\lbrace$flushleft$\rbrace$\dots\dots$\lbrace$flushleft$\rbrace$\end{flushleft}
+\begin{flushright}$\setminus$begin$\lbrace$flushright$\rbrace$\dots\dots$\lbrace$flushright$\rbrace$\end{flushright}
+$\setminus$textbf$\lbrace$Vedi$\rbrace$$\Rightarrow$\textbf{Vedi}\newline
+$\setminus$textit$\lbrace$Vini$\rbrace$$\Rightarrow$\textit{Vini}\newline
+$\setminus$textbf$\lbrace\setminus$Large$\lbrace\setminus$textcolor$\lbrace$red$\rbrace\lbrace$Vici$\rbrace\rbrace\rbrace$$\Rightarrow$\textit{\Large{\textcolor{red}{Vici}}}\newline
+\end{frame}	
+
+\subsection*{Lists}
+
+\begin{frame}
+	\frametitle{Lists}
+
+	\begin{small}
+	
+	\begin{columns}[c]
+
+	\column{2in}
+	\begin{itemize}
+	\item{Tom and Jerry}
+	\item{Calvin and Hobbes}
+	\end{itemize}
+
+	\begin{enumerate}
+	\item{FDMA}
+	\item{TDMA}
+	\item{CDMA}
+	\end{enumerate}
+	
+	\column{2in}
+	$\setminus$begin$\lbrace$itemize$\rbrace$\newline
+	$\setminus$item$\lbrace$Tom and Jerry$\rbrace$\newline
+	$\setminus$item$\lbrace$Calvin and Hobbes$\rbrace$\newline
+	$\setminus$end$\lbrace$itemize$\rbrace$\newline
+
+	$\setminus$begin$\lbrace$enumerate$\rbrace$\newline
+	$\setminus$item$\lbrace$FDMA$\rbrace$\newline
+	$\setminus$item$\lbrace$TDMA$\rbrace$\newline
+	$\setminus$item$\lbrace$CDMA$\rbrace$\newline
+	$\setminus$end$\lbrace$enumerate$\rbrace$\newline
+
+	\end{columns}
+
+	\end{small}
+\end{frame}
+
+\subsection*{Tables}
+\begin{frame}
+	\frametitle{Tables}
+
+	\begin{columns}[c]
+
+	\column{2in}
+
+	\begin{tabular}{|r|r|}
+	\hline
+	$n$&$n!$\\
+	\hline
+	1&1\\
+	2&2\\
+	3&6\\
+	4&24\\
+	5&120\\
+	6&720\\
+	7&5040\\
+	8&40320\\
+	9&362880\\
+	10&3628800\\
+	\hline
+	\end{tabular}
+
+	\column{2in}
+
+	$\setminus$begin$\lbrace$tabular$\rbrace\lbrace$$\vert$r$\vert$r$\vert$$\rbrace$\newline
+	$\setminus$hline\newline
+	$n$\&$n!$$\setminus\setminus$\newline
+	$\setminus$hline\newline
+	1\&1$\setminus\setminus$\newline
+	2\&2$\setminus\setminus$\newline
+	3\&6$\setminus\setminus$\newline
+	4\&24$\setminus\setminus$\newline
+	5\&120$\setminus\setminus$\newline
+	6\&720$\setminus\setminus$\newline
+	7\&5040$\setminus\setminus$\newline
+	8\&40320$\setminus\setminus$\newline
+	9\&362880$\setminus\setminus$\newline
+	10\&3628800$\setminus\setminus$\newline
+	$\setminus$hline\newline
+	$\setminus$end$\lbrace$tabular$\rbrace$
+
+	\end{columns}
+\end{frame}	
+
+\subsection*{Graphics}
+
+\begin{frame}
+	\frametitle{Graphics}
+
+	\begin{columns}[c]
+
+	\column{2in}
+
+	\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.15,angle=270]{./figure/iitblogo.epsi}
+	\caption{Sine Wave}
+	\label{fig:sinewave}
+	\end{center}
+	\end{figure}
+
+	\column{3in}
+
+	\begin{small}
+	$\setminus$begin$\lbrace$figure$\rbrace$\newline
+	$\setminus$begin$\lbrace$center$\rbrace$\newline
+	$\setminus$includegraphics[scale=0.5,angle=270]$\lbrace$graph.eps$\rbrace$\newline
+	$\setminus$caption$\lbrace$Sine Wave$\rbrace$\newline
+	$\setminus$label$\lbrace$fig:sinwave$\rbrace$\newline
+	$\setminus$end$\lbrace$center$\rbrace$\newline
+	$\setminus$end$\lbrace$figure$\rbrace$\newline
+	\end{small}
+
+	\end{columns}
+
+\end{frame}	
+
+\subsection*{Equations}
+
+\begin{frame}
+	\frametitle{Math Type Sucks}
+	\begin{quote}
+	``This result is too beautiful to be false; it is more important to have beauty in one's equations than to have them fit experiment.'' \hfill ---Paul Dirac
+	\end{quote}
+\begin{center}$e^{i\pi} +1 =0$\end{center}
+\begin{center}$\int _{-\infty}^{+\infty} \delta(t) =1$\end{center}
+\begin{center}$J = \frac{aE_{local}^2}{\phi} exp(\frac {-b\phi^{3/2}}{E_{local}})$\end{center}
+
+\end{frame}
+
+\section{Bibliography}
+
+\begin{frame}
+	\frametitle{Bibliography: Tools}
+	\begin{itemize}
+	\item{A bibliography style file (say IEEEbib.bst)}
+	\item{A bibliography file (*.bib)}	
+	\item{bibtex (just a command like latex)}
+	\end{itemize}
+
+	\bibliographystyle{IEEEbib}
+	\bibliography{pres}
+	\nocite{*}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Bibliography: Syntax}
+	$\setminus$bibliographystyle$\lbrace$IEEEbib$\rbrace$\newline
+	$\setminus$bibliography$\lbrace$foo$\rbrace$\newline
+	$\setminus$nocite$\lbrace$*$\rbrace$\newline
+	@Article$\lbrace$ref1,\newline
+	author =``Jean Marc Bonard \textit{et al.}'',\newline
+	title = ``Field emission from carbon nanotubes'',\newline
+	journal = ``Solid-State Electronics'',\newline
+	year = ``2001'',\newline
+	volume = ``45'',\newline
+	$\rbrace$\newline
+	\$latex foo.tex\newline
+	\$bibtex foo\newline
+	\$latex foo.tex
+\end{frame}
+
+\section{Presentation: Tools \& Usage}
+
+\begin{frame}
+	\frametitle{Presentation: Tools \& Usage}
+	\begin{itemize}
+	\item{Prosper Class}
+	\item{Beamer Class} (built on top of Prosper)
+	\end{itemize}
+%	\newline
+	Syntax is the same except for a few class specific commands.\newline
+	Sufficient number of templates and color combinations.\newline
+	This presentation was made using Beamer Class.
+\end{frame}
+
+\subsection*{Overlays}
+
+\begin{frame}
+	\frametitle{Overlays}
+	
+	\begin{itemize}
+	\pause
+	\item{Anthem (1938)}
+	\pause
+	\item{The Fountainhead (1943)}
+	\pause
+	\item{Atlas Shrugged (1957)}
+	\end{itemize}
+\end{frame}
+
+\subsection*{Theorem, Corollary, Proof, Definition et al.}
+
+\begin{frame}
+	\frametitle{Theorem, Corollary, Proof, Definition et al.}
+
+	\begin{block}{Riemann Hypothesis}
+	The Riemann hypothesis asserts that all interesting solutions of the equation $\zeta(s) = 0$ lie on a certain vertical straight line.
+	\end{block}
+
+\end{frame}
+
+\section{Paper Writing}
+
+\begin{frame}
+	\frametitle{IEEE Paper Writing Tools}
+	\begin{itemize}
+	\item{ieee.cls :} The class file
+	\item{ieeefig.sty :} The style file for figures.
+	\item{ieeeskel.tex :} A skeleton file which can be blown to a paper.
+	\item{IEEEbib.bst :} The bibliography style file.
+	\end{itemize}
+%	\newline
+	Download from: \url{http://mocha-java.uccs.edu/ieee/}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Questions, Comments \& Suggestions}
+\end{frame}
+
+\end{document}
+
+
+
+

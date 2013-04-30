@@ -1,0 +1,4 @@
+latex mahendra.tex
+dvips mahendra.dvi
+ps2pdf mahendra.ps
+evince mahendra.pdf 

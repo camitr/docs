@@ -1,0 +1,525 @@
+\documentclass{beamer}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{multirow} 
+\usepackage{url}
+\usepackage{verbatim}
+%\usepackage{subfig}
+%\usepackage{float}
+%\DisemulatePackage{setspace}
+%\usepackage{setspace}
+%\usepackage[usenames,dvipsnames]{color}
+\usetheme{CambridgeUS}
+\useoutertheme{infolines}
+\useinnertheme{rounded}
+\setbeamercovered{dynamic}
+%\usefonttheme{structurebold}
+
+\title[Current Vs
+Volt-mode Signaling Scheme in 65nm
+Tech.]{Performance Comparison of Current-mode and
+Voltage-mode Signaling Scheme in 65nm
+Technology Node}
+\author[]{Presented by \\
+{\Large \bf {Gireesh Kumar Nayak}} \\
+Under the guidance of\\
+{\bf Prof. Dinesh Kumar Sharma}}
+\institute[\url{girish@ee.iitb.ac.in}]{Department  of Electrical Engineering\\
+Indian Institute of Technology, Bombay}
+
+\date{M.Tech. Final stage}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Performance Comparison of Current-mode and
+Voltage-mode Signaling Scheme in 65nm
+Technology Node}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Performance Comparison of Current-mode and
+Voltage-mode Signaling Scheme in 65nm
+Technology Node}
+
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\subsection*{Motivation}
+\begin{frame}
+	
+
+\frametitle{Motivation \& Introduction}
+\begin{small}
+\begin{itemize}
+	\item{As technology is scaling down, global interconnects play an important role in overall performance and power consumption of high performance IC.}
+        \item{Current mode signaling is observed to be one of the prominent solution for long on-chip interconnect wires. Energy-delay product characteristic is one of the crucial performance measure.}
+\item{Study suggests that 85\% improvement in 180nm CMOS technology node due to current mode signaling  over voltage mode signaling.}
+\item{This optimistic results arose a curiosity and need to observe the performance in 65nm CMOS technology node for the same.}
+ \end{itemize}
+	\end{small}	
+\end{frame}
+
+
+
+
+
+\section{Parasitic Extraction Setup}
+
+\subsection*{Parasitic Extraction Setup}
+
+\begin{frame}
+\frametitle{Parasitic Extraction Setup}
+\begin{figure}
+\centering
+{\includegraphics[scale=0.35,angle=360]{./Nayakfig/bd_line.ps}} 
+\end{figure}
+\begin{small}
+\begin{itemize}
+	\item{Shielded line structure is used for capacitance and resistance calculation.}
+	\item{Shielded wires that is either VDD or GND are intently put between every metal wire or between alternative wires to prevent noise resultant from coupling capacitance.}
+	\item{Parasitic extraction is done in UMC65nm CMOS process. }
+\item{This offers 10 metal lines. Top metals are used for clock and VDD and M8 is  suitable for signal transmission.}
+	\end{itemize}
+\end{small}
+\end{frame}
+
+
+
+
+
+
+
+
+
+\section*{Parasitic Extraction Setup}
+\subsection*{Results}
+\begin{frame}
+	\frametitle{Parasitic Extraction Setup}
+\begin{tabular} { | l | l | l | l | l | l | l | } 
+ \hline
+   $W_{signal}$ & Spacing  & R & $C_{coupling}$ & $C_{gnd}$ & $C_{tot}$ & $T_{RCtot}$ \\
+  \hline
+($\mu$m) & ($\mu$m)  & ($\Omega$/mm) & (fF/mm) & (fF/mm) &(fF/mm) & (ps) \\
+\hline\hline
+  1 &  0.26  & 32.32 &  247  &  18.2  &  265.2  &  856 \\
+  \hline
+  0.9 & 0.31  & 36.23 &  219  & 17.9 &  236.9  & 862  \\
+  \hline
+  0.8 & 0.36  &  41.1 &   198.7   &  17.54  &  216.24  &  887   \\
+  \hline
+  0.7 & 0.41 & 46.58 & 181.34 & 17.2 & 198.54 & 924.8  \\
+  \hline
+0.6 &  0.46 & 53.9 & 167.2 & 16.9 & 184.1 & 991.6  \\
+\hline
+0.5 &  0.51  &  64.12 &  154.1 &  16.6  & 170.7  & 1094   \\
+\hline
+0.4 &   0.56  &   79.476  &  142.9 & 16.4   & 159.3  & 1265    \\
+\hline
+0.3 & 0.61 & 105.96  & 130.8  & 16.1   &  146.9   &  1557  \\
+\hline
+0.2 &  0.66  &  188.94 &  119 &  16.09  & 135.09 & 2150   \\
+\hline
+\end{tabular}
+\end{frame}
+
+
+
+
+
+
+\section{Wire Model}
+\subsection*{Wire Model}
+\begin{frame}
+\frametitle{Wire Model}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.35,angle=360]{./Nayakfig/line_second.ps}
+		%\caption{AC analysis of CML Multiplexer}
+	\end{center}
+	\end{figure}
+\begin{small}
+\begin{itemize}
+ 	\item{Wire model for high frequency can be approximated to 5$-&\pi$ model as shown.}
+        \item{The driver is modeled as a voltage source with output resistance and capacitance.}
+        \item{For voltage mode signaling, Termination resistance is infinite where current mode signaling it is finite.} 
+	\end{itemize}
+	\end{small}
+\end{frame}
+
+\section*{Wire Model}
+\subsection*{Wire Model}
+\begin{frame}
+\frametitle{Wire Model}
+\vspace{0.2in}
+$T_d = \frac{{\frac{R_T C_T}{2}(R_B + R_L + \frac{2 R_B R_L}{R_T} + \frac{R_T}{3}) + L_T}}{R_L + R_T + R_B}$\\
+\vspace{0.2in}
+$T_v = \frac{R_T C_T}{2}$\\
+\vspace{0.2in}
+$T_c = \frac{R_T C_T}{6} + \frac{L_T}{R_T}$\\
+\vspace{0.2in}
+Where, $T_d$ is total delay, $T_v$ is voltage mode delay ,$T_c$ is current mode delay, $R_T$ is total resistance of interconnect wire, $R_B$ is source driver resistance, $R_L$ is load resistance, $C_T$ is total capacitance of interconnect wire,and $L_T$ is total inductance. 
+\footnotetext[1]{
+\tiny {Ref: \cite{katoch1}{\color{blue}{Atul Katoch, Evert Seevinck and Harry Veendrick, “Fast signal
+propagation for point to point on-chip long interconnects using current
+sensing,” ESSCIRC’02, Sep. 2002.}}}}
+\end{frame}
+
+
+
+\section{Voltage Mode Signaling}
+\subsection*{Voltage Mode signaling}
+\begin{frame}
+	\frametitle{Voltage Mode signaling}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.5,angle=360]{./Nayakfig/buffer.ps}
+	\end{center}
+	\end{figure}\\
+\begin{small}
+\begin{itemize}
+ \item{In voltage mode signaling, voltage entity is used for transmission of signal. }
+	\item{Power consumption of voltage mode is more as capacitors has to fully charge and discharge with full signal amplitude.}
+\item{To improve delay performance, Delay insertion technique is used. }
+	\end{itemize}
+	\end{small}	
+\end{frame}
+
+
+
+\section{Repeater based Voltage Mode Signaling}
+\subsection*{Repeater based Voltage Mode Signaling}
+\begin{frame}
+	\frametitle{Repeater based Voltage Mode Signaling}
+
+	\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.5,angle=360]{./Nayakfig/repeater.ps}
+	\end{center}
+	\end{figure}\\
+	
+\begin{description}
+\item[What is the optimum wire segment length L'?]\\
+\end{description}\\
+
+\\
+$\Delta = nAL'^2 + (n-1)\tau = \frac{L}{L'} A {L'}^2 + (\frac{L}{L'}-1)\tau = ALL' +(\frac{L}{L'} - 1)\tau$\\
+\\
+\begin{description}
+\item[Putting the derivative with respect to L'= 0 for optimization,]\\
+\end{description}\\
+
+$AL - \frac{L}{L'^2}\tau=0$, so $AL'=\tau$\\
+\vspace{}
+
+
+\bf{L' should be so chosen that the wire segment delay = $\tau$.}\\
+\\
+\bf{Total delay is proportional to n and so, is linear in L.}
+
+\footnotetext[1]{
+\tiny {Ref: Current Mode Interconnect Tutorial slide from Prof D. K. Sharma, IIT Bombay.}}
+\end{frame}
+
+
+
+
+\section*{Repeater based Voltage Mode Signaling}
+\subsection*{Results}
+\begin{frame}
+
+\frametitle{Results}
+
+\begin{table}
+\begin{center}
+\begin{tabular} { ||@{}c|@{}c|@{}c|@{}c|@{}c|@{}c|@{}c|@{}c||  } 
+ \hline
+   $W_{sgnl}$ & Spacing & R & $C_{tot}$ & $T_{RCtot}$ & Delay & Energy & EDP\\
+  \hline
+($\mu$m) & ($\mu$m)  & ($\Omega$/mm)  & (fF/mm) & (ps) & (ps) & (pJ) & (pJ*ps)\\
+  \hline\hline
+  1 &  0.26  & 32.32 &  265.2  &  856 & 310 & 1.05 & 0.327 \\
+ 
+ \hline
+0.6 &  0.46 & 53.9 & 184.1 & 991.6  & 325 & 0.9 & 0.292 \\
+
+\hline
+0.2 &  0.66  &  188.94 & 135.09 & 2150   & 410 & 0.87 & 0.356  \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{frame}
+
+
+
+\section{Current Mode Signaling}
+\subsection*{Current Mode Signaling}
+\begin{frame}
+	\frametitle{Current Mode Signaling}
+	
+\begin{itemize}
+	\item{Current mode signaling scheme is promising alternative of voltage mode buffer insertion scheme for high speed low power data transmission over long on-chip interconnect.}
+	\item{The key to current mode signaling is low impedance termination at the receiver end which results in reduced signal swing and increased bandwidth performance. }
+	\item{Transmitter circuit used here is based on dynamic over-driving technique.}
+	\end{itemize}
+\end{frame}
+
+
+\section*{Current Mode Signaling}
+
+\subsection*{Dynamic Overdriving Driver(DOD)}
+\begin{frame}
+\frametitle{Dynamic Over-driving Driver}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3,angle=360]{./Nayakfig/Tx.ps}\par
+	\end{center}
+	\end{figure}
+\begin{scriptsize}
+\begin{itemize}
+	\item{Dynamic over-driving is amplification of high frequency component of input signal.}
+	\item{In time domain it means giving large current to the line during transition of input and vary small current in steady state.}
+	\end{itemize}
+\end{scriptsize}
+\end{frame}	
+
+\section*{Current Mode Signaling}
+\subsection*{Receiver Circuit}
+\begin{frame}
+	\frametitle{Receiver Circuit}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3,angle=360]{./Nayakfig/Rx.ps}\par
+	\end{center}
+	\end{figure}
+\begin{scriptsize}
+\begin{itemize}
+	\item{Receiver Circuit used here is diode connected PMOS and NMOS followed by inverter chain.}
+        \item{Terminated diode connected inverter acts like a current sensing circuit. it converts small receiving current signal to voltage swing.}
+	\end{itemize}
+\end{scriptsize}
+\end{frame}	
+
+\section*{Current Mode Signaling}
+\subsection*{Receiver Circuit}
+\begin{frame}
+	\frametitle{Results}
+\begin{table}
+\begin{center}
+\begin{tabular} { ||@{}c|@{}c|@{}c|@{}c|@{}c|@{}c|@{}c|@{}c||  } 
+ \hline
+   $W_{sgnl}$ & Spacing & R & $C_{tot}$ & $T_{RCtot}$ & Delay & Energy & EDP\\
+  \hline
+($\mu$m) & ($\mu$m)  & ($\Omega$/mm)  & (fF/mm) & (ps) & (ps) & (pJ) & (pJ*ps)\\
+  \hline\hline
+  1 &  0.26  & 32.32 &  265.2  &  856 & 250 & 0.2 & 0.05 \\
+ 
+ \hline
+0.9 &  0.31 & 36 & 238 & 887  & 250 & 0.21 & 0.051 \\
+
+\hline
+0.6 &  0.46  &  53.9 & 184.1 & 991   & 250 & 0.21 & 0.051  \\
+\hline
+0.4 &  0.56 & 79 & 159 & 1265 & 270 & 0.21  &  0.056 \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{frame}
+
+
+
+\section*{Current Mode Signaling}
+\subsection*{Receiver Circuit}
+\begin{frame}
+	\frametitle{Results}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3,angle=360]{./Nayakfig/2.ps}\\
+              	
+		\caption{W = 0.9um S = 0.31um }
+	\end{center}
+	\end{figure}
+\end{frame}
+
+\section*{Current Mode Signaling}
+\subsection*{Receiver Circuit}
+\begin{frame}
+	\frametitle{Results}
+	\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.3,angle=360]{./Nayakfig/5.ps}
+		\caption{W = 0.6um S = 0.41um }
+	\end{center}
+	\end{figure}
+	\end{frame}
+
+\section*{Current Mode Signaling}
+\subsection*{Receiver Circuit}
+\begin{frame}
+	\frametitle{Results}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3,angle=360]{./Nayakfig/7.ps}\\
+		\caption{W = 0.4um S = 0.56um }
+	\end{center}
+	\end{figure}
+\end{frame}
+
+\section*{Current Mode Signaling}
+\subsection*{Receiver Circuit}
+\begin{frame}
+	\frametitle{Results}
+	\begin{figure}
+	\begin{center}
+	
+        \includegraphics[scale=0.3,angle=360]{./Nayakfig/9.ps}
+		\caption{W = 0.2um S = 0.66um }
+	\end{center}
+	\end{figure}
+	\end{frame}
+
+
+\section{Conclusion}
+\subsection*{Future Work}
+\begin{frame}
+	\frametitle{Conclusion}
+	\begin{itemize}
+	\item{Due to technology scaling, chips are becoming denser and therefore routing are now seviour issue for designer.}
+	\item{Current mode signaling shows that 85\% improvement in Energy-Delay product(EDP) for 180nm technology over current mode signaling.}
+        \item{ Using the same current mode signaling be achieved 83\% improvement in EDP for 10mm line in 65nm Technology node.}
+        \item{ A best EDP is obtained with signal wire width of 0.6$\mu$ meter, spacing of 0.46 $\mu$ meter and pitch of 1.72 $\mu$ meter.}
+\end{itemize}	
+
+\end{frame}
+
+
+
+
+\section{Bibliography}
+
+\begin{frame}
+	\frametitle{Bibliography:}
+\tiny
+\begin{thebibliography}{50}
+\addtolength{\leftmargin}{0.2in} % sets up alignment with the following line.
+\setlength{\itemindent}{-0.2in}
+\bibitem{ITRS}
+ Semiconductor Industry Association, The International Technology Roadmap for Semiconductors, 2001 Edition.
+  
+\bibitem{seevinck}
+Evert Seevinck, Petrus J. van Beers and Hans Ontrop, “Current-Mode Techniques for High-Speed VLSI Circuits with Applications to Current Sense
+Amplifier for CMOS SRAM’s”, IEEE Journal of SolidState Circuits,, Vol. 26, No. 26, April 1991, pp. 525-536.
+
+\bibitem{atul}
+Atul Maheshwari and Wayne Burleson, “Currentsensing for Global Interconnects, Secondary Design Issues: Analysis and Solutions”, IEEE International
+Workshop on power and timing modeling, optimization and simulation. September 2001.
+
+\bibitem{katoch1}
+Atul Katoch, Evert Seevinck and Harry Veendrick, “Fast signal
+propagation for point to point on-chip long interconnects using current
+sensing,” ESSCIRC’02, Sep. 2002.
+
+\bibitem{katoch2}
+A. Katoch, H. Veendrick and E. Seevinck High speed current-mode
+signaling circuits for on-chip wires, in Proc. of the ESSCIRC,2005.
+
+\bibitem{marsh1}
+M. Dave et. al.,A Process Variation Tolerant Current Mode Signaling
+Scheme for On-chip InterconnectsProc. of GLSVLSI, 2009.
+
+\bibitem{chang}
+Richard T. Chang, Niranjan Talwalkar, C. Patrick Yue and S. Simon
+Wong, “Near Speed-of-Light Signaling Over On-Chip Electrical
+Interconnects,” IEEE Journal of Solid State Circuits, May 2003.
+
+\bibitem{marsh3}
+M. Dave, M. Shojaei and D. Sharma,Low power
+current mode receiver with inductive input
+impedance"Proceedings of ISLPED, pp. 225-228,
+August 2008
+
+\bibitem{marsh2}
+M.Dave,Energy Eficient Current-Mode Signaling Scheme.
+
+\bibitem{venkat1}
+V. Venkatraman et al., “Robust Multi-Level Current-Mode Signaling in
+the Presence of Process Variations” in proc. of ISQED, 2005.
+
+\end{thebibliography}
+\end{frame}
+
+
+
+\section*{Bibliography}
+
+\begin{frame}
+	\frametitle{Bibliography:}
+\tiny
+\begin{thebibliography}{50}
+\addtolength{\leftmargin}{0.2in} % sets up alignment with the following line.
+\setlength{\itemindent}{-0.2in}
+
+
+\bibitem{venkat2}
+ V. Venkatraman et. al, “ An Energy-efficient Multi-bit Quaternary Currentmode
+Signaling for On-chip Interconnects” in proc. of (CICC),2007
+\bibitem{schmid}
+H. Schmid, “Why the terms ‘current-mode’ and ‘voltage-mode’ neither divide nor
+qualify circuits,” IEEE International Symp. On Circuits and Systems, 2002, pp. 29-
+32.
+\bibitem{cong}
+Y. Cong, R.L. Geiger, “Performance association and discrimination between
+current-mode and voltage mode operation of monolithic linear circuits,” Southwest
+
+\bibitem{tomazou}
+Symposium on Mixed-Signal Design, 2001.
+C. Tomazou, F.J.Lidgey, D.G. Haigh, Analogue IC design: the current-mode
+approach, vol 2 of IEE Circuit and Systems Series 2, Peter Perigrinus Ltd. 1990
+
+\bibitem{bkolu}
+Bakoglu, H.B. Circuits, Interconnections, and Packaging for VLSI. Addison
+Wesley, 1990
+
+\bibitem{schi}
+D. Schinkel, E. Mensink, E. A. M. Klumperink, E. van Tuijl, and B.
+Nauta, “A 3-Gb/s/ch transceiver for 10-mm uninterrupted RC-limited
+global on-chip interconnects,” IEEE J. Solid-State Circuits, vol. 41, pp.
+297–306, Jan. 2006.
+
+\bibitem{bashi}
+R. Bashirullah, L. Wentai, R. Cavin, III, and D. Edwards, “A 16 GB/s
+adaptive bandwidth on-chip bus based on hybrid current/voltage mode
+signaling,” IEEE J. Solid-State Circuits, vol. 41, pp. 461–473, Feb.
+2006.
+
+\bibitem{zang}
+L. Zhang, J. Wilson, R. Bashirullah, L. Lei, X. Jian, and P. Franzon,
+“Driver pre-emphasis techniques for on-chip global buses,” in Proc.
+Int. Symp. Low Power Electronics and Design (ISLPED), Aug. 2005,
+pp. 186–191.
+\bibitem{mensink}
+Eisse Mensink,A. M. Klumperink,Ed van Tuijl,Bram Nauta``Power Efficient Gigabit Communication Over Capacitively Driven RC-Limited On-Chip''
+InterconnectsIEEE JOURNAL OF SOLID-STATE CIRCUITS, VOL. 45, NO. 2, FEBRUARY 2010
+\end{thebibliography}
+\end{frame}
+
+\section*{}
+\subsection*{}
+\begin{frame}
+	\begin{block}{\Large \bf {Thank You}}
+	\end{block}
+\end{frame}
+\end{document}
+
+

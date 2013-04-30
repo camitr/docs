@@ -1,0 +1,12 @@
+\beamer@endinputifotherversion {3.10pt}
+\beamer@sectionintoc {1}{Progress}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Authentication Enabled}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Conferencing Room development}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{Scheduling}{9}{0}{1}
+\beamer@subsectionintoc {1}{4}{Mobile conference}{13}{0}{1}
+\beamer@sectionintoc {2}{New Development}{16}{0}{2}
+\beamer@subsectionintoc {2}{1}{Record Meeting}{16}{0}{2}
+\beamer@subsectionintoc {2}{2}{Technote}{21}{0}{2}
+\beamer@subsectionintoc {2}{3}{Version 0.81}{22}{0}{2}
+\beamer@subsectionintoc {2}{4}{Source Code}{29}{0}{2}
+\beamer@sectionintoc {3}{Architecture}{33}{0}{3}
