@@ -386,8 +386,8 @@ It will take 3-4 min to compile the code.
 	
 	<skinning enabled="true" url="branding/css/theme.css.swf" />
 
-Directory structure details of bbb-client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Directory structure
+^^^^^^^^^^^^^^^^^^^
 
 It contains 3 type of directories.
 
@@ -462,4 +462,61 @@ Language used
 
 	Groovy,Java,gsp(groovy server page),js
 
+Compilation tool
+^^^^^^^^^^^^^^^^
+
+::	
+	
+	Gradle is used to compile the source
+
+
+Directory structure
+^^^^^^^^^^^^^^^^^^^
+
+Compiled 
+________
+
+
+::
+	
+	The compile source is in location:
+	/var/lib/tomcat6/webapps/bigbluebutton.war
+
+Build files
+___________
+
+::
+	
+	build.gradle, build.xml
+
+
+Source 
+______
+
+
+Groovy
+******
+
+::	
+	
+	api---> Groovy program for recording services.
+	presentation---> Groovy program to generate slide.
+	
+Java
+****
+
+::
+	
+	api---> java program for recording and meeting services.
+	presentation---> Imp java program to convert in swf format using the swftools.
+	web---> java program for expired meeting timer.
+	
+	
+
+Template
+********
+
+::
+	
+	artifact,scaffoding,war
 
