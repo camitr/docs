@@ -447,7 +447,7 @@ test
 bbb-web
 ~~~~~~~
 
-Its a grail based application,use for scheduling conference, login/logout, retriving and saving data, and uploading the data.bbb-web is stand on the top of Tomcat servlet container.
+Its a grail based application,use for scheduling conference, login/logout, retriving and saving data, and uploading the data.bbb-web is stand on the top of Tomcat servlet container.It  uses the service of redis.
 
 ** bbb-web uses two convertor **
 
@@ -520,3 +520,11 @@ Template
 	
 	artifact,scaffoding,war
 
+
+bbb-apps
+~~~~~~~~
+
+It is mostly based on services of red5 server. It handles many application services like ``conference,chat,voice,recording,layout,poll,presentation,whitebard,messaging``.
+
+.. image:: images/bbb-apps.jpg
+		:width: 62% 
