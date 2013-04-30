@@ -455,7 +455,7 @@ Its a grail based application,use for scheduling conference, login/logout, retri
 #. ImageMagick--> To create the thumbnail of the presentation, If swftool fail to convert ther are used.
 
 Language used
-_____________
+^^^^^^^^^^^^^
 
 ::
 
