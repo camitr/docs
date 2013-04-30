@@ -446,3 +446,5 @@ test
 
 bbb-web
 ~~~~~~~
+
+Its a grail based application,use for scheduling conference, login/logout, retriving and saving data, and uploading the data.bbb-web is stand on the top of Tomcat servlet container
