@@ -447,4 +447,19 @@ test
 bbb-web
 ~~~~~~~
 
-Its a grail based application,use for scheduling conference, login/logout, retriving and saving data, and uploading the data.bbb-web is stand on the top of Tomcat servlet container
+Its a grail based application,use for scheduling conference, login/logout, retriving and saving data, and uploading the data.bbb-web is stand on the top of Tomcat servlet container.
+
+** bbb-web uses two convertor **
+
+#. SWFtools--> use to convert png/pdf format to swf.
+#. ImageMagick--> To create the thumbnail of the presentation, If swftool fail to convert ther are used.
+
+Language used
+_____________
+
+::
+
+
+	Groovy,Java,gsp(groovy server page),js
+
+
