@@ -528,3 +528,60 @@ It is mostly based on services of red5 server. It handles many application servi
 
 .. image:: images/bbb-apps.jpg
 		:width: 62% 
+
+Language used
+^^^^^^^^^^^^^
+
+::
+	
+	Java, Scala
+
+Compilation tool
+^^^^^^^^^^^^^^^^
+
+::
+	
+	Gradle
+
+Directory structure
+^^^^^^^^^^^^^^^^^^^
+
+Compiled 
+________
+
+::
+	
+	Compiled source is inside the location
+	/var/lib/tomcat6/webapps/bigbluebutton/WEB-INF
+
+Source
+______
+
+The  directory has source of Java,Scala program files
+
+Java
+****
+
+::
+	
+	Conferencing/services--> Java program for different service provided to user as he join the conference (chat ppt) 
+
+	WebConference--> contain red5 & java program of meeting services.
+
+
+Scala
+***** 
+
+::
+	
+	contain scala program for user and meeting(few code)
+
+
+Web-INF
+*******
+
+::
+	
+	xml files for apps voice freeswitch biblubutton.properties
+
+
