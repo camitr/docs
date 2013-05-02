@@ -5,13 +5,42 @@ Detail Analysis of BBB Source Code
 .. section-numbering::
 .. footer::
 
-	Page: ###Page###/###Total###, Source Code analysis, IIT Bombay
 
 
 
-**Source Code Directoires details** [#]_
+		
+	Page: ###Page###/###Total###, Source Code analysis, IIT Bombay. Author: Amit Shrivastava, Version: 1.0
 
-.. [#] 
+
+	
+
+
+
+
+	
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
 
 
 Total Directories
@@ -264,7 +293,7 @@ ________________
 ::
 
 	Ant is used for the compilation. Which contains build.xml file, which has the details of the project.		
-
+	We can also specify the module to compile like \*ant build whiteboard*\ will compile only whiteboard changes.
 Example for Compilation
 _______________________
 
@@ -577,11 +606,15 @@ Scala
 	contain scala program for user and meeting(few code)
 
 
-Web-INF
-*******
+Web-INF  [#]_     
+*******   
+ 
 
 ::
 	
-	xml files for apps voice freeswitch biblubutton.properties
+	xml files for apps voice freeswitch biblubutton.properties, define the structure of web application.
 
 
+
+ 
+.. [#] Web-information contain deployment descriptor(web.xml),classes,lib 
