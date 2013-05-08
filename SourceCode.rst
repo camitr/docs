@@ -189,6 +189,25 @@ source code,running software test and creating files and documentation for the s
 	swf files genrated by the ANT are store in /bigbluebutton-client/bin directory
 
 
+In bbb Flex Ant is use to compile the flex program. Some points related to build.xml are :
+
+* Task used in Flex ant
+
+#. mxmlc= Invokes application compiler, It compiles Flex application modules css swf files.
+#. html-wrapper=Generates html wrapper and supporting files for the flex application.
+
+::
+	
+	To use Ant task it contains flexTask.jar file at location 
+	/dev/tools/flex-4.5.0.20967/ant/lib/flexTasks.jar
+
+::
+	
+	taskdef <> task is use to point the jar file in build.xml
+
+::
+	
+	FLEX_HOME variable is set so that Ant can find flex-config.xml file and it adds the frameworks directory to the source path.
 
 
 .. _Gradle:
